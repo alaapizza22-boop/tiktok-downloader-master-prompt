@@ -16,8 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
-        cache: 'npm'
+        node-version: 20
 
     - name: Set up Java 17
       uses: actions/setup-java@v4
@@ -29,7 +28,7 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Install dependencies
-      run: npm install
+      run: npm install --legacy-peer-deps
 
     - name: Build Web App & Capacitor Sync
       env:
