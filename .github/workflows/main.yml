@@ -36,6 +36,17 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/postgres' }}
       run: |
         npm run build
+        
+        # تجهيز مجلد out تلقائياً إذا لم يقم Next.js بتصديره
+        if [ ! -d "out" ]; then
+          echo "Creating 'out' directory for Capacitor..."
+          mkdir -p out
+          cp -r public/* out/ 2>/dev/null || true
+          mkdir -p out/_next
+          cp -r .next/static out/_next/ 2>/dev/null || true
+          find .next -name "*.html" -exec cp {} out/ \; 2>/dev/null || true
+        fi
+
         npx cap add android || true
         npx cap sync android
 
