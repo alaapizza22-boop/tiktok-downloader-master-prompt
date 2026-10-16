@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #05060a;
+  --color-panel: #0b0d14;
+  --color-neon: #25f4ee;
+  --color-magenta: #fe2c55;
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ink);
+  color: #f4f6fb;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- خلفية المسرح (خارج إطار الهاتف على الشاشات الكبيرة) ---------- */
+.stage-bg {
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgba(254, 44, 85, 0.14), transparent 60%),
+    radial-gradient(55rem 40rem at 10% 110%, rgba(37, 244, 238, 0.12), transparent 60%),
+    var(--color-ink);
+}
+
+/* ---------- بطاقات زجاجية ---------- */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ---------- زر العلامة المتدرّج ---------- */
+.btn-brand {
+  background: linear-gradient(95deg, #25f4ee 0%, #4fd6ff 45%, #fe2c55 110%);
+  color: #03141a;
+  box-shadow:
+    0 10px 30px -8px rgba(37, 244, 238, 0.45),
+    0 6px 24px -6px rgba(254, 44, 85, 0.35);
+  transition: transform 0.15s ease, filter 0.2s ease, opacity 0.2s ease;
+}
+.btn-brand:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+.btn-brand:not(:disabled):active {
+  transform: scale(0.97);
+}
+.btn-brand:disabled {
+  opacity: 0.55;
+}
+
+/* ---------- نص متدرّج ---------- */
+.text-brand-gradient {
+  background: linear-gradient(90deg, #25f4ee, #7ef0ff 40%, #fe2c55 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- توهج نيون ---------- */
+.glow-neon {
+  box-shadow: 0 0 24px rgba(37, 244, 238, 0.35), 0 0 64px rgba(37, 244, 238, 0.12);
+}
+
+/* ---------- هيكل تحميل (Skeleton) ---------- */
+.shimmer {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.05) 30%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.05) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- طفو ناعم للعناصر ---------- */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+/* ---------- نبض دائري ---------- */
+@keyframes ring-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.animate-ring-pulse {
+  animation: ring-pulse 1.8s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+/* ---------- إخفاء السكرولبار ---------- */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- حبيبات ضوضاء خفيفة ---------- */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* ---------- شريط تقدّم داخل الأزرار ---------- */
+.progress-fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  background: rgba(255, 255, 255, 0.22);
+  transition: width 0.2s linear;
+}
+
+/* ---------- مناطق الأمان للنوتش ---------- */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
